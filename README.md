@@ -4,15 +4,16 @@ Controls who may call DocFlow's document API and how much they may use it.
 
 - **Backend:** Node.js + Express, SQLite (`better-sqlite3`)
 - **Admin page:** React (served by the same Express server)
+- **Docs:** [DESIGN.md](DESIGN.md) (key decisions and trade-offs) · [PRODUCTION.md](PRODUCTION.md) (what's next for production)
 
 ## Run it locally
 
 Requires **Node.js 20.11 or newer** and an internet connection (for `npm install` and the React CDN used by the admin page).
 
+From the project folder:
+
 ```bash
-cd server
-npm install
-npm run seed     # creates the database and prints one API key per company
+npm run setup    # installs dependencies, creates the database, prints one API key per company
 npm start        # API and admin page on http://localhost:3000
 ```
 
@@ -86,6 +87,7 @@ curl -i -X POST http://localhost:3000/documents \
 ## Project layout
 
 ```
+package.json         shortcuts: npm run setup / npm run seed / npm start (they run inside server/)
 server/
   src/db.js          database connection, tables, key hashing and creation
   src/seed.js        resets the database with the seed companies
